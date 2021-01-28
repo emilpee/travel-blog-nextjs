@@ -1,15 +1,25 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React from "react";
+import { fetchAPI } from "../api/strapi";
 
-export default function Home() {
+const Home = (props) => {
+  const { articles } = props
   return (
-    <>
-      <Head>
-        <title>Travel Blog</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <div>
+        {articles.map((article) => <h1 key={article.id}>{article.title}</h1>)}
+      </div>
+  );
+};
 
-      <div>Hello!</div>
-    </>
-  )
+export const getStaticProps = async () => {
+  const [articles, categories, homepage] = await Promise.all([
+    fetchAPI("/articles?status=published"),
+    fetchAPI("/categories"),
+    fetchAPI("/homepage"),
+  ]);
+
+  return {
+    props: { articles, categories, homepage },
+  };
 }
+
+export default Home;
