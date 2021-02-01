@@ -1,11 +1,11 @@
 import React from 'react'
 import { fetchAPI } from '../api/strapi'
-import { BlogContainer, BlogCards, Header } from '../components'
+import { BlogContainer, BlogCards, Navbar } from '../components'
 
 const Home = (props) => {
   return (
     <div>
-      <Header></Header>
+      <Navbar categories={props.categories}></Navbar>
       <BlogContainer>
         <BlogCards articles={props.articles} />
       </BlogContainer>
@@ -22,7 +22,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { articles, categories, homepage },
-    revalidate: 1,
   }
 }
 
