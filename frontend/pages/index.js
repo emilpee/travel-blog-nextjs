@@ -1,28 +1,17 @@
 import React from 'react'
-import { fetchAPI } from '../api/strapi'
 import { BlogContainer, BlogCards, Navbar } from '../components'
+import withApollo from '../api/apollo'
+import { ChakraProvider } from '@chakra-ui/react'
 
 const Home = (props) => {
   return (
-    <div>
-      <Navbar categories={props.categories}></Navbar>
+    <ChakraProvider>
+      <Navbar></Navbar>
       <BlogContainer>
-        <BlogCards articles={props.articles} />
+        <BlogCards />
       </BlogContainer>
-    </div>
+    </ChakraProvider>
   )
 }
 
-export const getStaticProps = async () => {
-  const [articles, categories, homepage] = await Promise.all([
-    fetchAPI('/articles?status=published'),
-    fetchAPI('/categories'),
-    fetchAPI('/homepage'),
-  ])
-
-  return {
-    props: { articles, categories, homepage },
-  }
-}
-
-export default Home
+export default withApollo({ ssr: true })(Home)

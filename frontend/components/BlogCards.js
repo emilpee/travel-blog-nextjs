@@ -1,13 +1,28 @@
 import Card from './Card'
+import { gql, useQuery } from '@apollo/client'
+
+const QUERY = gql`
+  {
+    articles {
+      id
+      slug
+      title
+      description
+      updated_at
+    }
+  }
+`
 
 const BlogCards = (props) => {
-  const { articles } = props
+  const { loading, error, data } = useQuery(QUERY)
+  if (error) return 'Error loading articles'
+  if (loading) return <h1>Fetching</h1>
+
   return (
     <div>
-      {articles &&
-        articles.map((article) => {
-          return <Card key={article.id} article={article}></Card>
-        })}
+      {data.articles.map((article) => {
+        return <Card key={article.id} article={article}></Card>
+      })}
     </div>
   )
 }

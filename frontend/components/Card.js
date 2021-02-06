@@ -3,6 +3,7 @@ import { Box } from '@chakra-ui/react'
 
 const Card = (props) => {
   const { article } = props
+
   return (
     <Link href={`/posts/${article.slug}`}>
       <Box maxW="sm" margin="2" bg="gray.200" borderWidth="1px" borderRadius="md" overflow="hidden">
