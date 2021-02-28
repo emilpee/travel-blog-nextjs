@@ -1,4 +1,4 @@
-import Card from './Card'
+import { Card } from '../Card'
 import { gql, useQuery } from '@apollo/client'
 
 const QUERY = gql`
