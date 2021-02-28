@@ -1,18 +1,13 @@
 import React from 'react'
-import { BlogContainer, BlogCards, Navbar } from '../components'
 import withApollo from '../api/apollo'
-import { ChakraProvider } from '@chakra-ui/react'
+import Layout from '../components/Layout'
 
-const Home = (props) => {
-  console.log(props)
+const Home = () => {
   return (
     <>
-      <Navbar></Navbar>
-      <BlogContainer>
-        <BlogCards />
-      </BlogContainer>
+      <Layout></Layout>
     </>
   )
 }
 
-export default withApollo()(Home)
+export default withApollo({ ssr: true })(Home)
