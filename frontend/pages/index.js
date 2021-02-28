@@ -4,14 +4,15 @@ import withApollo from '../api/apollo'
 import { ChakraProvider } from '@chakra-ui/react'
 
 const Home = (props) => {
+  console.log(props)
   return (
-    <ChakraProvider>
+    <>
       <Navbar></Navbar>
       <BlogContainer>
         <BlogCards />
       </BlogContainer>
-    </ChakraProvider>
+    </>
   )
 }
 
-export default withApollo({ ssr: true })(Home)
+export default withApollo()(Home)
