@@ -1,12 +1,13 @@
-import React from 'react'
 import withApollo from '../api/apollo'
+import { BlogCards } from '../components/BlogCards'
+import { BlogContainer } from '../components/BlogContainer'
 import Layout from '../components/Layout'
 
-const Home = () => {
+const Home = (props) => {
   return (
-    <>
-      <Layout></Layout>
-    </>
+    <Layout>
+      <BlogContainer children={<BlogCards />} />
+    </Layout>
   )
 }
 

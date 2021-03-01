@@ -1,7 +1,7 @@
-import React from 'react'
 import App from 'next/app'
 import Head from 'next/head'
 import { ChakraProvider } from '@chakra-ui/react'
+
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
@@ -17,4 +17,5 @@ class MyApp extends App {
     )
   }
 }
+
 export default MyApp
