@@ -1,4 +1,5 @@
 import { Card } from '../Card'
+import { Container } from '@chakra-ui/react'
 import { gql, useQuery } from '@apollo/client'
 
 const QUERY = gql`
@@ -9,6 +10,10 @@ const QUERY = gql`
       title
       description
       updated_at
+      image {
+        url
+        alternativeText
+      }
     }
   }
 `
@@ -19,11 +24,11 @@ const BlogCards = (props) => {
   if (loading) return <h1>Fetching</h1>
 
   return (
-    <div>
+    <Container bg="gray.50">
       {data.articles.map((article) => {
         return <Card key={article.id} article={article}></Card>
       })}
-    </div>
+    </Container>
   )
 }
 

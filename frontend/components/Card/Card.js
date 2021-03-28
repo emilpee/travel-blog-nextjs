@@ -1,12 +1,13 @@
 import Link from 'next/link'
-import { Box } from '@chakra-ui/react'
+import { Box, Image, Text } from '@chakra-ui/react'
 
 const Card = (props) => {
   const { article } = props
 
   return (
     <Link href={`/posts/${article.slug}`}>
-      <Box maxW="sm" margin="2" bg="gray.200" borderWidth="1px" borderRadius="md" overflow="hidden">
+      <Box cursor="pointer" marginTop="4" bg="gray.200" borderWidth="1px" borderRadius="md" overflow="hidden">
+        <Image src={`http://localhost:1337${article.image.url}`} alt={article.image.alternativeText} />
         <Box p="6">
           <Box d="flex" alignItems="baseline">
             <Box
@@ -26,7 +27,7 @@ const Card = (props) => {
           <Box>{article.description}</Box>
 
           <Box as="span" color="gray.600" fontSize="sm">
-            {article.updated_at}
+            <Text>Updated at {article.updated_at}</Text>
           </Box>
         </Box>
       </Box>
