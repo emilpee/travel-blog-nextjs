@@ -1,6 +1,7 @@
 import App from 'next/app'
 import Head from 'next/head'
-import { ChakraProvider } from '@chakra-ui/react'
+import withApollo from '../api/apollo'
+import Layout from '../components/Layout'
 
 class MyApp extends App {
   render() {
@@ -10,12 +11,12 @@ class MyApp extends App {
         <Head>
           <title>Travel blog</title>
         </Head>
-        <ChakraProvider>
+        <Layout>
           <Component {...pageProps} />
-        </ChakraProvider>
+        </Layout>
       </>
     )
   }
 }
 
-export default MyApp
+export default withApollo({ ssr: true })(MyApp)
