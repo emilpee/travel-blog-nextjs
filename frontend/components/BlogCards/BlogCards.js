@@ -10,6 +10,10 @@ const QUERY = gql`
       title
       description
       updated_at
+      category {
+        id
+        name
+      }
       image {
         url
         alternativeText
@@ -19,13 +23,16 @@ const QUERY = gql`
 `
 
 const BlogCards = (props) => {
+  const { category } = props
   const { loading, error, data } = useQuery(QUERY)
   if (error) return 'Error loading articles'
   if (loading) return <h1>Fetching</h1>
 
+  const filteredArticlesByCategory = data.articles.filter((article) => article.category?.id === category?.id)
+
   return (
     <Container bg="gray.50">
-      {data.articles.map((article) => {
+      {filteredArticlesByCategory.map((article) => {
         return <Card key={article.id} article={article}></Card>
       })}
     </Container>
