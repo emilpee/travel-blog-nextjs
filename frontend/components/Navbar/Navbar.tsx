@@ -19,12 +19,12 @@ const Navbar = () => {
   const smallScreen = useMediaQuery('(max-width: 768px)')
 
   useEffect(() => {
-    if (smallScreen !== isMobile) {
+    if (smallScreen[0] !== isMobile) {
       setIsMobile(smallScreen[0])
     }
   }, [isMobile, smallScreen])
 
-  if (error) return 'Error loading categories'
+  if (error) return <p>Error loading categories</p>
   if (loading) return <h2>Fetching...</h2>
 
   return (
@@ -33,7 +33,7 @@ const Navbar = () => {
         <Heading padding="4" as="h3" size="xl">
           <Link href="/">Travel blog</Link>
         </Heading>
-        <Flex grow="1" justify="flex-end">
+        <Flex justify="flex-end">
           {data.categories.map((category) => {
             return (
               <Link key={category.id} href={`/categories/${category.slug}`}>

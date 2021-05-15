@@ -25,7 +25,7 @@ const QUERY = gql`
 const BlogCards = (props) => {
   const { category } = props
   const { loading, error, data } = useQuery(QUERY)
-  if (error) return 'Error loading articles'
+  if (error) return <p>Error loading articles</p>
   if (loading) return <h1>Fetching</h1>
 
   const filteredArticlesByCategory = data.articles.filter((article) => article.category?.id === category?.id)
