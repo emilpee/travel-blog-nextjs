@@ -1,22 +1,21 @@
-import App from 'next/app'
+import { ApolloProvider } from '@apollo/client'
 import Head from 'next/head'
-import withApollo from '../api/apollo'
+import apolloClient from '../api/apollo'
 import Layout from '../components/Layout'
 
-class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props
-    return (
-      <>
-        <Head>
-          <title>Travel blog</title>
-        </Head>
+const App = ({ Component, pageProps }) => {
+  return (
+    <>
+      <Head>
+        <title>Travel blog</title>
+      </Head>
+      <ApolloProvider client={apolloClient}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </>
-    )
-  }
+      </ApolloProvider>
+    </>
+  )
 }
 
-export default withApollo({ ssr: true })(MyApp)
+export default App
