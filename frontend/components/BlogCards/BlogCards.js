@@ -1,34 +1,8 @@
 import { Card } from '../Card'
 import { Container } from '@chakra-ui/react'
-import { gql, useQuery } from '@apollo/client'
 
-const QUERY = gql`
-  {
-    articles {
-      id
-      slug
-      title
-      description
-      updated_at
-      category {
-        id
-        name
-      }
-      image {
-        url
-        alternativeText
-      }
-    }
-  }
-`
-
-const BlogCards = (props) => {
-  const { category } = props
-  const { loading, error, data } = useQuery(QUERY)
-  if (error) return 'Error loading articles'
-  if (loading) return <h1>Fetching</h1>
-
-  const filteredArticlesByCategory = data.articles.filter((article) => article.category?.id === category?.id)
+const BlogCards = ({ category, articles }) => {
+  const filteredArticlesByCategory = articles.filter((article) => article.category?.id === category?.id)
 
   return (
     <Container bg="gray.50">
