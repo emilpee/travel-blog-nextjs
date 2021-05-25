@@ -4,17 +4,28 @@ import apolloClient from '../../api/apollo'
 import { BlogPost } from '../../components/BlogPost'
 
 const Post = ({ article }) => {
+  console.log(article)
   const router = useRouter()
   const { post } = router.query
   return <BlogPost post={article} />
 }
 
 export async function getServerSideProps() {
+  // Lös detta Emil! Hur få in ID?
+
+  // const resolvers = {
+  //   Query: {
+  //     album (parent, args, context, info) {
+  //       const { id } = args;
+  //       return context.db.Albums.find((a) => a.id == id)
+  //     }
+  //   }
+  // }
+
   const { data } = await apolloClient.query({
     query: gql`
       query Article {
-        article(id: 1) {
-          id
+        article(id: "2") {
           slug
           title
           description

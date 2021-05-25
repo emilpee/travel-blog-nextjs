@@ -1,7 +1,6 @@
 import { Box, Heading, Text } from '@chakra-ui/react'
 
 const BlogPost = ({ post }) => {
-  console.log(post)
   return (
     <Box padding="2" color="black">
       <Heading>{post.title}</Heading>
